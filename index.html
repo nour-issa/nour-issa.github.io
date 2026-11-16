@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nour Issa</title>
+<meta name="description" content="Nour Issa — AI and computer vision engineer. M2 Mechatronics, Machine Vision and AI at Université Paris-Saclay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: fixed identity rail on the left, work on the right; a live sparse point cloud as the one visual signature. */
+:root {
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --ink: #131824;
+  --muted: #586174;
+  --line: #dce1ea;
+  --accent: #2a46d1;
+  --accent-soft: #e6eafc;
+  --ok: #1f7a4d;
+  --ok-soft: #e3f3ea;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1016; --surface: #141922; --ink: #e8ebf1; --muted: #9aa3b3; --line: #252c39;
+    --accent: #8fa1ff; --accent-soft: #1c2341; --ok: #6fd3a0; --ok-soft: #13291f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1016; --surface: #141922; --ink: #e8ebf1; --muted: #9aa3b3; --line: #252c39;
+  --accent: #8fa1ff; --accent-soft: #1c2341; --ok: #6fd3a0; --ok-soft: #13291f;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 56px;
+}
+
+/* Identity rail */
+.rail { position: sticky; top: 40px; align-self: start; display: grid; gap: 24px; }
+.name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.role { color: var(--muted); margin-top: 10px; font-size: 15px; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ok-soft); color: var(--ok);
+  font-size: 13px; font-weight: 500;
+  padding: 6px 12px; border-radius: 999px; width: fit-content;
+}
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+nav a {
+  display: flex; justify-content: space-between;
+  color: var(--muted); text-decoration: none; font-size: 14px;
+  padding: 6px 0; border-bottom: 1px solid var(--line);
+}
+nav a span { font-family: var(--font-mono); font-size: 12px; }
+nav a:hover { color: var(--ink); }
+.contact { display: grid; gap: 8px; font-size: 14px; }
+.contact .row { display: grid; grid-template-columns: 76px 1fr; gap: 8px; }
+.contact .k { color: var(--muted); font-family: var(--font-mono); font-size: 12px; padding-top: 2px; }
+.todo { color: var(--muted); font-style: italic; }
+
+/* Main */
+main { display: grid; gap: 64px; min-width: 0; }
+section { display: grid; gap: 20px; }
+.label {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); display: flex; align-items: center; gap: 12px;
+}
+.label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.intro { display: grid; grid-template-columns: 1fr 260px; gap: 32px; align-items: center; }
+.lede { font-size: 21px; line-height: 1.5; max-width: 34ch; margin: 0; }
+.lede strong { font-weight: 600; }
+.intro p.sub { color: var(--muted); max-width: 60ch; margin: 16px 0 0; }
+.cloud {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px; display: grid; gap: 6px;
+}
+.cloud canvas { width: 100%; height: 200px; display: block; }
+.cloud figcaption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+
+/* Experience */
+.timeline { display: grid; }
+.job {
+  display: grid; grid-template-columns: 150px 1fr; gap: 24px;
+  padding: 20px 0; border-top: 1px solid var(--line);
+}
+.job:last-child { border-bottom: 1px solid var(--line); }
+.when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.job h3 { font-size: 18px; font-weight: 600; }
+.org { color: var(--muted); font-size: 15px; }
+.job p { margin: 8px 0 0; max-width: 62ch; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
+.tags li {
+  font-family: var(--font-mono); font-size: 12px;
+  border: 1px solid var(--line); color: var(--muted);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+/* Projects */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 22px; display: grid; gap: 10px; align-content: start;
+}
+.project .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.project h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.2; }
+.pill {
+  font-family: var(--font-mono); font-size: 11px; white-space: nowrap;
+  background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 4px;
+}
+.project .ctx { color: var(--muted); font-size: 14px; margin: 0; }
+.project p { margin: 0; }
+.pipe {
+  font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  padding: 10px 12px; background: var(--bg); border-radius: 6px;
+}
+.pipe b { color: var(--ink); font-weight: 500; }
+.pipe i { font-style: normal; color: var(--accent); }
+
+/* Education + skills */
+.edu { display: grid; }
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.skills h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.skills ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.lang { font-variant-numeric: tabular-nums; }
+.lang li { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.lang span { color: var(--muted); font-size: 13px; }
+
+footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
+
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 32px; }
+  .rail { position: static; }
+  nav { display: none; }
+  .intro { grid-template-columns: 1fr; }
+  .projects { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .job { grid-template-columns: 1fr; gap: 4px; }
+  .name { font-size: 38px; }
+  .lede { font-size: 19px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <aside class="rail">
+    <div>
+      <h1 class="name">Nour Issa</h1>
+      <div class="role">AI &amp; computer vision engineer<br>M2 Mechatronics, Machine Vision &amp; AI · Université Paris-Saclay</div>
+    </div>
+    <div class="status">Open to a 2027 end-of-studies internship</div>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#experience">Experience <span>01</span></a></li>
+        <li><a href="#projects">Projects <span>02</span></a></li>
+        <li><a href="#education">Education <span>03</span></a></li>
+        <li><a href="#skills">Skills <span>04</span></a></li>
+      </ul>
+    </nav>
+    <div class="contact">
+      <div class="row"><span class="k">based</span><span>Paris area, France</span></div>
+      <div class="row"><span class="k">email</span><span class="todo">add email</span></div>
+      <div class="row"><span class="k">linkedin</span><span class="todo">add link</span></div>
+      <div class="row"><span class="k">github</span><span class="todo">add link</span></div>
+    </div>
+  </aside>
+
+  <main>
+    <section aria-label="About">
+      <div class="intro">
+        <div>
+          <p class="lede">I build vision systems that understand <strong>3D scenes and human actions</strong>, and I want to put them on robots.</p>
+          <p class="sub">I spent a year and a half shipping computer vision for the sensor market: stereo 3D reconstruction and multi-sensor tracking. Before that I wrote C++ for automotive software. Now I'm doing an M2 in mechatronics, machine vision and AI, working on fine-grained action segmentation in egocentric video. I'm looking for an end-of-studies internship in embodied AI, vision-language-action models or video understanding.</p>
+        </div>
+        <figure class="cloud" aria-hidden="true">
+          <canvas id="cloud"></canvas>
+          <figcaption><span>sparse depth</span><span id="pts">0 pts</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2 class="label">01 · Experience</h2>
+      <div class="timeline">
+        <article class="job">
+          <div class="when">Jan 2025 –<br>Aug 2026</div>
+          <div>
+            <h3>AI Developer, sensor market</h3>
+            <div class="org">INTENTA, via LIT</div>
+            <p>Computer vision for sensor products: stereo 3D reconstruction and tracking objects across multiple sensors.</p>
+            <ul class="tags"><li>stereo vision</li><li>3D reconstruction</li><li>multi-sensor tracking</li></ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">Earlier</div>
+          <div>
+            <h3>C++ Developer, automotive</h3>
+            <div class="org">Roadgraph · CARIAD project</div>
+            <p>C++ development for automotive software.</p>
+            <ul class="tags"><li>C++</li><li>automotive</li></ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">Earlier</div>
+          <div>
+            <h3>Backend Developer Intern</h3>
+            <div class="org">Orasys</div>
+            <p>Backend development internship.</p>
+            <ul class="tags"><li>backend</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="label">02 · Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <div class="top"><h3>Fine-grained action segmentation in egocentric video</h3><span class="pill">in progress</span></div>
+          <p class="ctx">M2 research project · Université Paris-Saclay</p>
+          <p>Segmenting the key steps of a task from first-person video, using the Ego-Exo4D keystep benchmark and ideas from hand–object interaction work such as PrimHOI.</p>
+          <div class="pipe"><b>ego video</b><i>→</i><b>frame features</b><i>→</i><b>temporal model</b><i>→</i><b>keystep labels</b></div>
+          <ul class="tags"><li>Ego-Exo4D</li><li>video understanding</li></ul>
+        </article>
+        <article class="project">
+          <div class="top"><h3>Hexapod robot with adaptive gaits</h3><span class="pill">in progress</span></div>
+          <p class="ctx">M2 mechatronics project · Université Paris-Saclay</p>
+          <p>A six-legged robot that adapts its gait to the terrain.</p>
+          <div class="pipe"><b>terrain</b><i>→</i><b>gait selection</b><i>→</i><b>leg kinematics</b><i>→</i><b>motion</b></div>
+          <ul class="tags"><li>legged robotics</li><li>gait control</li><li>kinematics</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="label">03 · Education</h2>
+      <div class="timeline edu">
+        <article class="job">
+          <div class="when">2026 – 2027</div>
+          <div>
+            <h3>M2 Mechatronics, Machine Vision and Artificial Intelligence</h3>
+            <div class="org">Université Paris-Saclay</div>
+            <p>Machine learning, advances in machine vision, reinforcement learning and AI, 3D data analysis, computer vision for non-conventional cameras, virtual and mixed reality, kinematics and dynamics of mechatronic systems.</p>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">– 2023</div>
+          <div>
+            <h3>Bachelor's in Software and AI Engineering</h3>
+            <div class="org">HIAST</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="label">04 · Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Vision &amp; AI</h3>
+          <ul><li>Computer vision</li><li>Stereo 3D reconstruction</li><li>Multi-sensor tracking</li><li>Reinforcement learning</li><li>Video understanding</li></ul>
+        </div>
+        <div>
+          <h3>Robotics &amp; code</h3>
+          <ul><li>C++</li><li>Python</li><li>ROS 2</li><li>Gazebo</li></ul>
+        </div>
+        <div>
+          <h3>Languages</h3>
+          <ul class="lang"><li>Arabic <span>native</span></li><li>English <span>fluent</span></li><li>French <span>intermediate</span></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>Nour Issa · 2026</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var canvas = document.getElementById('cloud');
+  var ctx = canvas.getContext('2d');
+  var label = document.getElementById('pts');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // A sparse "scene": a ground plane, a box and a sphere, as a stereo rig might see them.
+  var pts = [];
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  for (var i = 0; i < 520; i++) pts.push([rnd(-1.4, 1.4), 0.6, rnd(-1.2, 1.2)]);
+  for (i = 0; i < 260; i++) {
+    var f = Math.floor(Math.random() * 3), u = rnd(-0.3, 0.3), v = rnd(-0.3, 0.3);
+    var p = f === 0 ? [u, v, -0.3] : f === 1 ? [0.3, u, v] : [u, -0.3, v];
+    pts.push([p[0] - 0.55, p[1] + 0.3, p[2] + 0.1]);
+  }
+  for (i = 0; i < 300; i++) {
+    var th = Math.acos(rnd(-1, 1)), ph = rnd(0, Math.PI * 2), r = 0.38;
+    pts.push([0.55 + r * Math.sin(th) * Math.cos(ph), 0.22 + r * Math.cos(th), -0.2 + r * Math.sin(th) * Math.sin(ph)]);
+  }
+  label.textContent = pts.length.toLocaleString('en-US') + ' pts';
+
+  function color(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  function resize() {
+    var dpr = window.devicePixelRatio || 1;
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function draw(t) {
+    var w = canvas.clientWidth, h = canvas.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+    var a = reduce ? 0.6 : t * 0.00025, tilt = 0.45;
+    var ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(tilt), st = Math.sin(tilt);
+    var accent = color('--accent'), muted = color('--muted');
+    for (var i = 0; i < pts.length; i++) {
+      var x = pts[i][0], y = pts[i][1], z = pts[i][2];
+      var x1 = x * ca - z * sa, z1 = x * sa + z * ca;
+      var y2 = y * ct - z1 * st, z2 = y * st + z1 * ct;
+      var d = 3.2 + z2, s = Math.min(w, h) * 1.25 / d;
+      var px = w / 2 + x1 * s, py = h / 2 + y2 * s;
+      var near = Math.max(0, Math.min(1, (3.9 - d) / 1.4));
+      ctx.globalAlpha = 0.25 + 0.75 * near;
+      ctx.fillStyle = i < 520 ? muted : accent;
+      ctx.fillRect(px, py, 1.6 + near, 1.6 + near);
+    }
+    ctx.globalAlpha = 1;
+    if (!reduce) requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
