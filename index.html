@@ -238,6 +238,37 @@ section { display: grid; gap: 22px; scroll-margin-top: 24px; }
 .quote figcaption b { color: var(--ink); font-weight: 600; display: block; font-size: 14px; }
 .quotes-note { color: var(--muted); font-size: 14px; margin: 0; }
 
+/* Illustrations: inline SVG, coloured by the theme tokens so they follow light/dark mode. */
+.art { margin: -6px -6px 4px; background: var(--bg-2); border-radius: 14px; overflow: hidden; }
+.art svg { display: block; width: 100%; height: auto; }
+.art text, .focus-art text { font-family: var(--font-mono); }
+.s-ink { stroke: var(--ink); } .s-acc { stroke: var(--accent); } .s-warm { stroke: var(--warm); } .s-sky { stroke: var(--sky); } .s-line { stroke: var(--line); } .s-surf { stroke: var(--surface); }
+.f-ink { fill: var(--ink); } .f-acc { fill: var(--accent); } .f-warm { fill: var(--warm); } .f-sky { fill: var(--sky); }
+.f-asoft { fill: var(--accent-soft); } .f-wsoft { fill: var(--warm-soft); } .f-surf { fill: var(--surface); } .f-bg { fill: var(--bg); } .f-line { fill: var(--line); } .f-muted { fill: var(--muted); }
+.nofill { fill: none; }
+.project .supervisor { font-size: 13px; color: var(--muted); margin: 0; }
+
+.focus {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 26px; box-shadow: var(--shadow);
+}
+.focus-art { background: var(--bg-2); border-radius: 18px; overflow: hidden; margin: 0; }
+.focus-art svg { display: block; width: 100%; height: auto; }
+.focus h3 { font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; margin: 4px 0 16px; }
+.focus h3 em { color: var(--accent); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+.steps .dot {
+  width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: 12px; background: var(--accent-soft); color: var(--accent);
+}
+.steps li:nth-child(2) .dot { background: var(--warm-soft); color: var(--warm); }
+.steps li:nth-child(3) .dot { background: var(--ink); color: var(--surface); }
+.steps b { display: block; font-weight: 600; }
+.steps span.d { color: var(--muted); font-size: 14.5px; }
+@media (max-width: 1180px) { .focus { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .focus { padding: 18px; border-radius: 20px; } .focus h3 { font-size: 24px; } }
+
 footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); text-align: center; padding-top: 8px; }
 
 @media (max-width: 1180px) {
@@ -312,6 +343,43 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
       </div>
     </section>
 
+
+    <section aria-label="Where I'm heading">
+      <div class="focus">
+        <figure class="focus-art"><svg viewBox="0 0 360 220" role="img" aria-label="Illustration of a robot arm with a camera, following the spoken instruction: put the cube in the box" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="360" height="220" class="f-bg" opacity="0"/>
+<polygon points="300,40 214,150 256,150" class="f-asoft" opacity=".9"/>
+<rect x="286" y="26" width="34" height="20" rx="4" class="f-ink"/>
+<circle cx="300" cy="36" r="5" class="f-sky"/>
+<rect x="24" y="22" width="168" height="36" rx="12" stroke-width="1" class="f-surf s-line"/>
+<path d="M60 58 l-6 12 l16 -12" class="f-surf"/>
+<text x="36" y="44" font-size="10.5" class="f-ink">“put the cube in the box”</text>
+<rect x="16" y="176" width="328" height="10" rx="5" class="f-line"/>
+<rect x="276" y="146" width="50" height="30" rx="3" stroke-width="2" class="s-sky nofill"/>
+<path d="M234 140 Q262 96 300 140" stroke-width="1.6" stroke-dasharray="4 4" class="s-acc nofill"/>
+<rect x="66" y="152" width="64" height="24" rx="7" class="f-ink"/>
+<line x1="98" y1="150" x2="150" y2="78" stroke-width="16" stroke-linecap="round" class="s-ink"/>
+<line x1="150" y1="78" x2="226" y2="104" stroke-width="12" stroke-linecap="round" class="s-ink"/>
+<circle cx="98" cy="150" r="11" class="f-acc"/>
+<circle cx="150" cy="78" r="10" class="f-warm"/>
+<circle cx="226" cy="104" r="7.5" class="f-acc"/>
+<rect x="220" y="108" width="14" height="18" rx="3" class="f-ink"/>
+<path d="M216 124 v14 M238 124 v14" stroke-width="4" stroke-linecap="round" class="s-ink"/>
+<rect x="216" y="152" width="24" height="24" rx="3" class="f-warm"/>
+<text x="24" y="206" font-size="9" class="f-muted">vision → language → action</text>
+</svg></figure>
+        <div>
+          <p class="kicker">Where I'm heading</p>
+          <h3>From pixels to <em>actions</em>: robots that see, understand and act.</h3>
+          <ol class="steps">
+            <li><span class="dot">01</span><div><b>Perceive</b><span class="d">3D vision, stereo depth, multi-sensor tracking: my industry work.</span></div></li>
+            <li><span class="dot">02</span><div><b>Understand</b><span class="d">Video and hand–object action understanding, vision-language models.</span></div></li>
+            <li><span class="dot">03</span><div><b>Act</b><span class="d">Robot learning, VLA models and control, from kinematics to learned policies.</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
     <section id="experience">
       <h2 class="label"><span class="n">01</span>Experience</h2>
       <div class="timeline">
@@ -359,6 +427,27 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
       <h2 class="label"><span class="n">02</span>Projects</h2>
       <div class="projects">
         <article class="project">
+          <figure class="art"><svg viewBox="0 0 320 140" role="img" aria-label="Illustration: first-person view of two hands reaching for a cup, above a timeline split into reach, grasp, pour and place" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="12" width="66" height="10" rx="5" class="f-sky"/>
+<rect x="90" y="12" width="76" height="10" rx="5" class="f-acc"/>
+<rect x="170" y="12" width="58" height="10" rx="5" class="f-warm"/>
+<rect x="232" y="12" width="68" height="10" rx="5" class="f-line"/>
+<text x="24" y="36" font-size="8.5" class="f-muted">reach</text>
+<text x="94" y="36" font-size="8.5" class="f-muted">grasp cup</text>
+<text x="174" y="36" font-size="8.5" class="f-muted">pour</text>
+<text x="236" y="36" font-size="8.5" class="f-muted">place</text>
+<line x1="198" y1="6" x2="198" y2="28" stroke-width="2" class="s-ink"/>
+<circle cx="198" cy="6" r="3" class="f-ink"/>
+<path d="M30 104 L290 104 L320 140 L0 140 Z" class="f-wsoft"/>
+<ellipse cx="108" cy="98" rx="34" ry="9" class="f-acc"/>
+<ellipse cx="108" cy="95" rx="28" ry="5" class="f-asoft"/>
+<rect x="176" y="62" width="28" height="38" rx="4" class="f-sky"/>
+<path d="M204 72 q12 0 12 10 q0 10 -12 10" stroke-width="4" class="s-sky nofill"/>
+<rect x="168" y="54" width="54" height="52" rx="4" stroke-width="1.6" stroke-dasharray="4 3" class="s-acc nofill"/>
+<text x="170" y="50" font-size="8" class="f-acc">cup 0.94</text>
+<ellipse cx="232" cy="114" rx="16" ry="28" transform="rotate(-32 232 114)" stroke-width="1.6" class="f-wsoft s-warm"/>
+<ellipse cx="82" cy="120" rx="16" ry="28" transform="rotate(30 82 120)" stroke-width="1.6" class="f-wsoft s-warm"/>
+</svg></figure>
           <div class="top"><h3>Fine-grained action segmentation in egocentric video</h3><span class="pill">in progress</span></div>
           <p class="ctx">M2 research project · Université Paris-Saclay</p>
           <p>Segmenting the key steps of a task from first-person video on the Ego-Exo4D keystep benchmark, and defining a taxonomy of action primitives with ways to discover them, building on hand–object interaction work such as PrimHOI.</p>
@@ -367,6 +456,7 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
           <ul class="tags"><li>Ego-Exo4D</li><li>video understanding</li></ul>
         </article>
         <article class="project">
+          <figure class="art"><svg viewBox="0 0 320 140" role="img" aria-label="Illustration: six-legged robot walking on uneven ground with a tripod gait" xmlns="http://www.w3.org/2000/svg"><path d="M0 118 Q40 108 80 117 T160 116 T240 121 T320 113 L320 140 L0 140 Z" class="f-asoft"/><text x="14" y="22" font-size="9" class="f-muted">tripod gait · swing / stance</text><g opacity=".35"><polyline points="138,66 116,40 106,112" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/></g><g opacity=".35"><polyline points="170,66 176,36 184,112" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/></g><g opacity=".35"><polyline points="200,66 226,40 246,112" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/></g><rect x="112" y="54" width="100" height="26" rx="13" class="f-ink"/><rect x="204" y="58" width="14" height="11" rx="3" class="f-warm"/><circle cx="134" cy="67" r="3" class="f-acc"/><circle cx="162" cy="67" r="3" class="f-acc"/><circle cx="190" cy="67" r="3" class="f-acc"/><polyline points="130,74 102,46 88,116" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/><circle cx="102" cy="46" r="4.5" class="f-acc"/><circle cx="88" cy="116" r="4" class="f-warm"/><polyline points="162,76 150,42 140,100" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/><circle cx="150" cy="42" r="4.5" class="f-acc"/><circle cx="140" cy="100" r="4" class="f-warm"/><polyline points="194,74 222,46 234,117" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="s-ink nofill"/><circle cx="222" cy="46" r="4.5" class="f-acc"/><circle cx="234" cy="117" r="4" class="f-warm"/><path d="M126 114 q14 -14 28 0" stroke-width="1.5" stroke-dasharray="3 3" class="s-warm nofill"/><rect x="250" y="24" width="24" height="6" rx="3" class="f-acc"/><rect x="278" y="24" width="24" height="6" rx="3" class="f-line"/><rect x="250" y="34" width="24" height="6" rx="3" class="f-line"/><rect x="278" y="34" width="24" height="6" rx="3" class="f-acc"/><rect x="250" y="44" width="24" height="6" rx="3" class="f-acc"/><rect x="278" y="44" width="24" height="6" rx="3" class="f-line"/></svg></figure>
           <div class="top"><h3>Hexapod robot with adaptive gaits</h3><span class="pill">in progress</span></div>
           <p class="ctx">M2 mechatronics project · Université Paris-Saclay</p>
           <p>A six-legged robot that adapts its gait to the terrain: leg kinematics (forward and inverse), gait generation and AI-based terrain adaptation, simulated with ROS 2 and Gazebo.</p>
@@ -375,6 +465,26 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
           <ul class="tags"><li>legged robotics</li><li>gait control</li><li>kinematics</li><li>ROS 2</li><li>Gazebo</li></ul>
         </article>
         <article class="project">
+          <figure class="art"><svg viewBox="0 0 320 140" role="img" aria-label="Illustration: image goes through an encoder into a latent grid and a small network predicts the class without decoding" xmlns="http://www.w3.org/2000/svg">
+<text x="160" y="14" text-anchor="middle" font-size="9" class="f-warm">skip decoding · 24× fewer GMACs</text>
+<path d="M106 38 Q190 14 286 56" stroke-width="1.5" stroke-dasharray="4 3" class="s-warm nofill"/>
+<rect x="16" y="44" width="56" height="56" rx="6" class="f-sky"/>
+<path d="M16 92 L36 68 L50 82 L60 72 L72 86 L72 100 L16 100 Z" class="f-acc"/>
+<circle cx="56" cy="56" r="6" class="f-warm"/>
+<path d="M78 72 h8" stroke-width="2" class="s-ink"/>
+<polygon points="88,44 124,58 124,86 88,100" class="f-ink"/>
+<text x="106" y="114" text-anchor="middle" font-size="8" class="f-muted">encoder</text>
+<path d="M128 72 h8" stroke-width="2" class="s-ink"/>
+<rect x="140" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.9"/><rect x="150" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.3"/><rect x="160" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.6"/><rect x="170" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.2"/><rect x="180" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.8"/><rect x="190" y="43" width="8" height="8" rx="1.5" class="f-acc" opacity="0.4"/><rect x="140" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.5"/><rect x="150" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.95"/><rect x="160" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.25"/><rect x="170" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.7"/><rect x="180" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.35"/><rect x="190" y="53" width="8" height="8" rx="1.5" class="f-acc" opacity="0.6"/><rect x="140" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.2"/><rect x="150" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.65"/><rect x="160" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.85"/><rect x="170" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.3"/><rect x="180" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.5"/><rect x="190" y="63" width="8" height="8" rx="1.5" class="f-acc" opacity="0.9"/><rect x="140" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.75"/><rect x="150" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.4"/><rect x="160" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.2"/><rect x="170" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.55"/><rect x="180" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.9"/><rect x="190" y="73" width="8" height="8" rx="1.5" class="f-acc" opacity="0.3"/><rect x="140" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.45"/><rect x="150" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.8"/><rect x="160" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.6"/><rect x="170" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.25"/><rect x="180" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.7"/><rect x="190" y="83" width="8" height="8" rx="1.5" class="f-acc" opacity="0.5"/><rect x="140" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.3"/><rect x="150" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.6"/><rect x="160" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.9"/><rect x="170" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.35"/><rect x="180" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.55"/><rect x="190" y="93" width="8" height="8" rx="1.5" class="f-acc" opacity="0.8"/>
+<text x="169" y="114" text-anchor="middle" font-size="8" class="f-muted">latents ŷ, σ, ẑ</text>
+<path d="M202 72 h8" stroke-width="2" class="s-ink"/>
+<rect x="214" y="52" width="10" height="40" rx="2" class="f-ink" opacity=".85"/>
+<rect x="228" y="58" width="10" height="28" rx="2" class="f-ink" opacity=".65"/>
+<rect x="242" y="64" width="10" height="16" rx="2" class="f-ink" opacity=".45"/>
+<path d="M256 72 h6" stroke-width="2" class="s-ink"/>
+<rect x="264" y="62" width="46" height="20" rx="10" class="f-wsoft"/>
+<text x="287" y="75.5" text-anchor="middle" font-size="9" class="f-warm">class</text>
+</svg></figure>
           <div class="top"><h3>Vision in the latent space of a learned codec</h3><span class="pill">prototype</span></div>
           <p class="ctx">Research prototype · PyTorch</p>
           <p>Image classification run directly on the latents of a learned image codec (hyperprior, JPEG&nbsp;AI-like), skipping pixel decoding. A light latent network is <strong>24× cheaper</strong> than decode-then-ResNet-18, and an input ablation shows the hyperprior and σ map carry most of the semantic signal.</p>
@@ -382,16 +492,43 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
           <ul class="tags"><li>learned compression</li><li>efficient inference</li><li>ablation study</li></ul>
         </article>
         <article class="project">
-          <div class="top"><h3>Object detection in aerial images</h3></div>
-          <p class="ctx">Research internship · HIAST</p>
-          <p>A deep-learning object detection system for aerial imagery.</p>
-          <ul class="tags"><li>object detection</li><li>deep learning</li><li>aerial imagery</li></ul>
+          <figure class="art"><svg viewBox="0 0 320 140" role="img" aria-label="Illustration: top-down satellite view of roads and buildings, split into overlapping slices, with small objects boxed" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="320" height="140" class="f-asoft"/><path d="M0 72 H320" stroke-width="12" class="s-surf"/><path d="M118 0 V140 M238 0 V140" stroke-width="10" class="s-surf"/><rect x="14" y="12" width="40" height="26" rx="2" class="f-sky" opacity=".55"/><rect x="62" y="16" width="36" height="20" rx="2" class="f-sky" opacity=".55"/><rect x="140" y="10" width="30" height="42" rx="2" class="f-sky" opacity=".55"/><rect x="178" y="18" width="44" height="24" rx="2" class="f-sky" opacity=".55"/><rect x="256" y="12" width="50" height="34" rx="2" class="f-sky" opacity=".55"/><rect x="16" y="92" width="46" height="30" rx="2" class="f-sky" opacity=".55"/><rect x="72" y="96" width="30" height="30" rx="2" class="f-sky" opacity=".55"/><rect x="146" y="90" width="70" height="22" rx="2" class="f-sky" opacity=".55"/><rect x="182" y="116" width="34" height="18" rx="2" class="f-sky" opacity=".55"/><rect x="256" y="92" width="44" height="36" rx="2" class="f-sky" opacity=".55"/><circle cx="104" cy="48" r="7" class="f-acc" opacity=".8"/><circle cx="226" cy="52" r="6" class="f-acc" opacity=".8"/><circle cx="130" cy="120" r="8" class="f-acc" opacity=".8"/><circle cx="228" cy="126" r="6" class="f-acc" opacity=".8"/><circle cx="312" cy="60" r="6" class="f-acc" opacity=".8"/><circle cx="70" cy="52" r="5" class="f-acc" opacity=".8"/><rect x="36" y="68" width="10" height="6" rx="1.5" class="f-ink"/><rect x="33" y="65" width="16" height="12" rx="2" stroke-width="1.5" class="s-warm nofill"/><rect x="182" y="74" width="10" height="6" rx="1.5" class="f-ink"/><rect x="179" y="71" width="16" height="12" rx="2" stroke-width="1.5" class="s-warm nofill"/><rect x="276" y="68" width="10" height="6" rx="1.5" class="f-ink"/><rect x="273" y="65" width="16" height="12" rx="2" stroke-width="1.5" class="s-warm nofill"/><rect x="115" y="26" width="6" height="10" rx="1.5" class="f-ink"/><rect x="112" y="23" width="12" height="16" rx="2" stroke-width="1.5" class="s-warm nofill"/><rect x="235" y="100" width="6" height="10" rx="1.5" class="f-ink"/><rect x="232" y="97" width="12" height="16" rx="2" stroke-width="1.5" class="s-warm nofill"/><rect x="4" y="4" width="112" height="132" rx="4" stroke-width="1.2" stroke-dasharray="5 4" class="s-ink nofill" opacity=".45"/><rect x="104" y="4" width="112" height="132" rx="4" stroke-width="1.2" stroke-dasharray="5 4" class="s-ink nofill" opacity=".45"/><rect x="204" y="4" width="112" height="132" rx="4" stroke-width="1.2" stroke-dasharray="5 4" class="s-ink nofill" opacity=".45"/><rect x="8" y="116" width="134" height="18" rx="9" class="f-surf"/><text x="75" y="128.5" text-anchor="middle" font-size="8.5" class="f-ink">SAHI overlapping slices</text></svg></figure>
+          <div class="top"><h3>Object detection in satellite images</h3><span class="pill">graduation project</span></div>
+          <p class="ctx">Engineering graduation project · HIAST · 2023</p>
+          <p>Satellite images are huge and their objects are tiny, so standard detectors miss most of them. I compared state-of-the-art detectors, <strong>YOLOX</strong> and <strong>YOLO-NAS</strong>, and combined them with <strong>SAHI</strong> (Slicing Aided Hyper Inference): the image is cut into overlapping slices, each slice is detected at full resolution, and the results are merged back. The work balanced speed against accuracy for large-scale images, with applications in disaster response, urban planning and environmental monitoring.</p>
+          <div class="pipe"><b>satellite image</b><i>→</i><b>overlapping slices</b><i>→</i><b>YOLOX / YOLO-NAS</b><i>→</i><b>merged detections</b></div>
+          <p class="supervisor">Supervised by Prof. Omar Hamdoun</p>
+          <ul class="tags"><li>YOLOX</li><li>YOLO-NAS</li><li>SAHI</li><li>small-object detection</li><li>satellite imagery</li></ul>
         </article>
         <article class="project">
-          <div class="top"><h3>Object detection for a visual question answering corpus</h3></div>
-          <p class="ctx">Research internship · HIAST</p>
-          <p>A detection system that supports building a research corpus for visual question answering.</p>
-          <ul class="tags"><li>object detection</li><li>VQA</li><li>dataset building</li></ul>
+          <figure class="art"><svg viewBox="0 0 320 140" role="img" aria-label="Illustration: a photo with cups, an apple and a book detected in boxes, turned into the question How many cups and the answer 2" xmlns="http://www.w3.org/2000/svg">
+<rect x="14" y="14" width="172" height="112" rx="8" class="f-wsoft"/>
+<path d="M14 96 H186" stroke-width="2" class="s-line"/>
+<rect x="34" y="60" width="20" height="34" rx="3" class="f-sky"/>
+<rect x="66" y="64" width="20" height="30" rx="3" class="f-sky"/>
+<circle cx="112" cy="84" r="10" class="f-warm"/>
+<path d="M112 74 q3 -6 7 -6" stroke-width="2" class="s-acc nofill"/>
+<rect x="134" y="80" width="40" height="14" rx="2" class="f-acc"/>
+<rect x="138" y="72" width="34" height="8" rx="2" class="f-acc" opacity=".6"/>
+<g stroke-width="1.5" class="s-ink nofill" stroke-dasharray="3 2">
+<rect x="30" y="56" width="28" height="42" rx="2"/><rect x="62" y="60" width="28" height="38" rx="2"/>
+<rect x="98" y="66" width="28" height="30" rx="2"/><rect x="130" y="68" width="48" height="30" rx="2"/>
+</g>
+<text x="30" y="52" font-size="7.5" class="f-ink">cup</text><text x="62" y="56" font-size="7.5" class="f-ink">cup</text>
+<text x="98" y="62" font-size="7.5" class="f-ink">apple</text><text x="130" y="64" font-size="7.5" class="f-ink">book</text>
+<path d="M190 70 h10" stroke-width="2" class="s-ink"/>
+<rect x="204" y="26" width="106" height="30" rx="10" stroke-width="1" class="f-surf s-line"/>
+<text x="214" y="45" font-size="9" class="f-ink">Q: How many cups?</text>
+<rect x="222" y="70" width="88" height="28" rx="10" class="f-acc"/>
+<text x="234" y="88" font-size="9" class="f-surf">A: 2</text>
+<text x="208" y="118" font-size="8" class="f-muted">question–answer pairs</text>
+</svg></figure>
+          <div class="top"><h3>Object detection for a visual question answering corpus</h3><span class="pill">top mark</span></div>
+          <p class="ctx">4th-year engineering project · HIAST · highest mark of the cohort</p>
+          <p>A visual question answering (VQA) corpus pairs images with questions and answers about them, so it first needs to know what each image contains. I built the deep-learning object detection stage: it finds the objects in every image with their class and location, which become the grounded facts used to build question–answer pairs such as “how many cups?” or “what is next to the book?”.</p>
+          <div class="pipe"><b>images</b><i>→</i><b>object detector</b><i>→</i><b>objects + boxes</b><i>→</i><b>Q/A pairs</b></div>
+          <p class="supervisor">Supervised by Dr. Waseem Safi</p>
+          <ul class="tags"><li>object detection</li><li>VQA</li><li>dataset construction</li><li>vision &amp; language</li></ul>
         </article>
       </div>
     </section>
