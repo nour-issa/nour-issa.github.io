@@ -3,177 +3,263 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nour Issa</title>
+<title>Nour Issa · AI &amp; Computer Vision Engineer</title>
 <meta name="description" content="Nour Issa — AI and computer vision engineer. M2 Mechatronics, Machine Vision and AI at Université Paris-Saclay.">
+<meta property="og:title" content="Nour Issa · AI &amp; Computer Vision Engineer">
+<meta property="og:description" content="Stereo 3D perception, multi-sensor tracking and egocentric video understanding. Open to a 2027 end-of-studies internship.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nour-issa.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,0..100;1,9..144,400..600,0..100&display=swap" rel="stylesheet">
 <style>
-/* Layout: fixed identity rail on the left, work on the right; a live sparse point cloud as the one visual signature. */
+/* Palette taken from the portrait: warm ivory light, black blazer ink, sage foliage, blush skin tones, blue-grey glass. */
 :root {
-  --bg: #f4f6f9;
-  --surface: #ffffff;
-  --ink: #131824;
-  --muted: #586174;
-  --line: #dce1ea;
-  --accent: #2a46d1;
-  --accent-soft: #e6eafc;
-  --ok: #1f7a4d;
-  --ok-soft: #e3f3ea;
-  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
-  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --bg: #f6f2ec;
+  --bg-2: #efe8df;
+  --surface: #fffdf9;
+  --ink: #1e1a17;
+  --muted: #6c625a;
+  --line: #e5dcd1;
+  --accent: #2f5f4f;
+  --accent-soft: #e2ece5;
+  --warm: #b4645a;
+  --warm-soft: #f6e5df;
+  --sky: #7f95a6;
+  --shadow: 0 1px 2px rgba(40, 30, 20, .05), 0 8px 24px -12px rgba(40, 30, 20, .18);
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d1016; --surface: #141922; --ink: #e8ebf1; --muted: #9aa3b3; --line: #252c39;
-    --accent: #8fa1ff; --accent-soft: #1c2341; --ok: #6fd3a0; --ok-soft: #13291f;
+    --bg: #14110f; --bg-2: #1a1613; --surface: #1d1916; --ink: #f2ece4; --muted: #a99f94; --line: #2f2924;
+    --accent: #93c4ae; --accent-soft: #1d2d26; --warm: #e39d8f; --warm-soft: #33221e; --sky: #8ea4b5;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d1016; --surface: #141922; --ink: #e8ebf1; --muted: #9aa3b3; --line: #252c39;
-  --accent: #8fa1ff; --accent-soft: #1c2341; --ok: #6fd3a0; --ok-soft: #13291f;
+  --bg: #14110f; --bg-2: #1a1613; --surface: #1d1916; --ink: #f2ece4; --muted: #a99f94; --line: #2f2924;
+  --accent: #93c4ae; --accent-soft: #1d2d26; --warm: #e39d8f; --warm-soft: #33221e; --sky: #8ea4b5;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px -14px rgba(0,0,0,.6);
   color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(900px 500px at 0% -10%, var(--accent-soft), transparent 60%),
+    radial-gradient(700px 420px at 100% 0%, var(--warm-soft), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 h1, h2, h3 { text-wrap: balance; margin: 0; }
+strong { font-weight: 600; }
 
 .wrap {
-  max-width: 1120px;
+  max-width: 1160px;
   margin: 0 auto;
-  padding: 48px 24px 72px;
+  padding: 40px 24px 80px;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 310px 1fr;
   gap: 56px;
 }
 
-/* Identity rail */
-.rail { position: sticky; top: 40px; align-self: start; display: grid; gap: 24px; }
+/* Identity card */
+.rail {
+  position: sticky; top: 32px; align-self: start; display: grid; gap: 22px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px;
+  padding: 28px 26px; box-shadow: var(--shadow);
+}
+.avatar {
+  position: relative; width: 168px; height: 168px; border-radius: 50%;
+  padding: 5px; margin-bottom: 22px;
+  background: conic-gradient(from 210deg, var(--accent), var(--sky), var(--warm), var(--accent));
+}
+.avatar-in {
+  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  border: 4px solid var(--surface); background: var(--accent-soft);
+  display: grid; place-items: center;
+}
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.avatar .initials { font-family: var(--font-display); font-weight: 600; font-size: 52px; color: var(--accent); }
 .name {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 44px;
-  line-height: 1;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 50, "opsz" 96;
 }
-.role { color: var(--muted); margin-top: 10px; font-size: 15px; }
+.role { color: var(--muted); margin-top: 10px; font-size: 15px; line-height: 1.5; }
 .status {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--ok-soft); color: var(--ok);
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--accent-soft); color: var(--accent);
   font-size: 13px; font-weight: 500;
-  padding: 6px 12px; border-radius: 999px; width: fit-content;
+  padding: 7px 14px; border-radius: 999px; width: fit-content;
 }
-.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+.status::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent); animation: pulse 2.4s infinite;
+}
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 70%, 100% { box-shadow: 0 0 0 8px transparent; } }
+@media (prefers-reduced-motion: reduce) { .status::before { animation: none; } }
 nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 nav a {
-  display: flex; justify-content: space-between;
+  display: flex; justify-content: space-between; align-items: center;
   color: var(--muted); text-decoration: none; font-size: 14px;
-  padding: 6px 0; border-bottom: 1px solid var(--line);
+  padding: 7px 10px; border-radius: 10px; transition: background .2s, color .2s;
 }
-nav a span { font-family: var(--font-mono); font-size: 12px; }
-nav a:hover { color: var(--ink); }
+nav a span { font-family: var(--font-mono); font-size: 11px; color: var(--warm); }
+nav a:hover { color: var(--ink); background: var(--bg-2); }
 .contact { display: grid; gap: 8px; font-size: 14px; }
-.contact .row { display: grid; grid-template-columns: 76px 1fr; gap: 8px; }
-.contact .k { color: var(--muted); font-family: var(--font-mono); font-size: 12px; padding-top: 2px; }
-.todo { color: var(--muted); font-style: italic; }
+.contact .row { display: grid; grid-template-columns: 64px 1fr; gap: 8px; min-width: 0; }
+.contact .row > :last-child { overflow-wrap: anywhere; }
+.contact .k { color: var(--muted); font-family: var(--font-mono); font-size: 11px; padding-top: 3px; text-transform: uppercase; letter-spacing: .06em; }
+.cv-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  background: var(--ink); color: var(--surface); padding: 11px 18px; border-radius: 999px;
+  transition: background .2s, transform .2s;
+}
+.cv-btn::after { content: "↓"; }
+.cv-btn:hover { background: var(--accent); transform: translateY(-1px); }
 
 /* Main */
-main { display: grid; gap: 64px; min-width: 0; }
-section { display: grid; gap: 20px; }
+main { display: grid; gap: 72px; min-width: 0; }
+section { display: grid; gap: 22px; scroll-margin-top: 24px; }
 .label {
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--muted); display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-weight: 500; font-size: 30px; letter-spacing: -0.01em;
+  display: flex; align-items: baseline; gap: 14px;
 }
-.label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.label .n { font-family: var(--font-mono); font-size: 12px; color: var(--warm); letter-spacing: .08em; }
+.label::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
 
-.intro { display: grid; grid-template-columns: 1fr 260px; gap: 32px; align-items: center; }
-.lede { font-size: 21px; line-height: 1.5; max-width: 34ch; margin: 0; }
-.lede strong { font-weight: 600; }
-.intro p.sub { color: var(--muted); max-width: 60ch; margin: 16px 0 0; }
+.intro { display: grid; grid-template-columns: 1fr 280px; gap: 36px; align-items: center; padding-top: 8px; }
+.kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--warm); margin: 0 0 14px; }
+.lede {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: 34px; line-height: 1.22; letter-spacing: -0.015em; max-width: 22ch; margin: 0;
+  font-variation-settings: "SOFT" 100, "opsz" 72;
+}
+.lede strong { font-weight: 500; font-style: italic; color: var(--accent); }
+.intro p.sub { color: var(--muted); max-width: 62ch; margin: 20px 0 0; }
+.intro p.sub strong { color: var(--ink); }
 .cloud {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 10px; display: grid; gap: 6px;
+  margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+  padding: 12px; display: grid; gap: 6px; box-shadow: var(--shadow);
 }
-.cloud canvas { width: 100%; height: 200px; display: block; }
-.cloud figcaption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; }
+.cloud canvas { width: 100%; height: 220px; display: block; }
+.cloud figcaption { font-family: var(--font-mono); font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; padding: 0 4px; }
 
-/* Experience */
-.timeline { display: grid; }
+/* Experience timeline */
+.timeline { display: grid; position: relative; }
 .job {
-  display: grid; grid-template-columns: 150px 1fr; gap: 24px;
-  padding: 20px 0; border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 140px 1fr; gap: 28px;
+  padding: 22px 0; border-top: 1px solid var(--line);
 }
 .job:last-child { border-bottom: 1px solid var(--line); }
-.when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
-.job h3 { font-size: 18px; font-weight: 600; }
-.org { color: var(--muted); font-size: 15px; }
-.job p { margin: 8px 0 0; max-width: 62ch; }
+.when { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 4px; }
+.job h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.005em; }
+.org { color: var(--warm); font-size: 14.5px; font-weight: 500; }
+.job p { margin: 8px 0 0; max-width: 64ch; }
+.job ul.points { margin: 10px 0 0; padding-left: 0; list-style: none; max-width: 64ch; display: grid; gap: 4px; }
+.job ul.points li { position: relative; padding-left: 18px; }
+.job ul.points li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: .7; }
 
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding: 0; list-style: none; }
 .tags li {
-  font-family: var(--font-mono); font-size: 12px;
-  border: 1px solid var(--line); color: var(--muted);
-  padding: 2px 8px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 11.5px;
+  background: var(--accent-soft); color: var(--accent);
+  padding: 3px 10px; border-radius: 999px;
 }
 
 /* Projects */
-.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .project {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-  padding: 22px; display: grid; gap: 10px; align-content: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+  padding: 24px; display: grid; gap: 12px; align-content: start; box-shadow: var(--shadow);
+  transition: transform .25s ease, border-color .25s ease;
 }
-.project .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.project h3 { font-family: var(--font-display); font-weight: 600; font-size: 22px; line-height: 1.2; }
+.project:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+@media (prefers-reduced-motion: reduce) { .project, .cv-btn { transition: none; } .project:hover, .cv-btn:hover { transform: none; } }
+.project .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.project h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1.22; letter-spacing: -0.01em; }
 .pill {
-  font-family: var(--font-mono); font-size: 11px; white-space: nowrap;
-  background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 4px;
+  font-family: var(--font-mono); font-size: 10.5px; white-space: nowrap; text-transform: uppercase; letter-spacing: .06em;
+  background: var(--warm-soft); color: var(--warm); padding: 4px 10px; border-radius: 999px; margin-top: 4px;
 }
-.project .ctx { color: var(--muted); font-size: 14px; margin: 0; }
+.project .ctx { color: var(--muted); font-size: 13.5px; margin: 0; }
 .project p { margin: 0; }
+.project .links { font-size: 14px; }
 .pipe {
-  font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--muted);
   display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
-  padding: 10px 12px; background: var(--bg); border-radius: 6px;
+  padding: 10px 12px; background: var(--bg-2); border-radius: 12px;
 }
 .pipe b { color: var(--ink); font-weight: 500; }
-.pipe i { font-style: normal; color: var(--accent); }
+.pipe i { font-style: normal; color: var(--warm); }
 
 /* Education + skills */
-.edu { display: grid; }
-.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-.skills h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-.skills ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 15px; }
+.edu .org { color: var(--accent); }
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.skills > div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; box-shadow: var(--shadow); }
+.skills h3 { font-family: var(--font-display); font-size: 19px; font-weight: 500; margin-bottom: 10px; }
+.skills ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 15px; }
 .lang { font-variant-numeric: tabular-nums; }
-.lang li { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
-.lang span { color: var(--muted); font-size: 13px; }
+.lang li { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+.lang span { color: var(--muted); font-size: 13px; text-align: right; }
 
-footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
+/* Recommendations */
+.quotes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.quote {
+  margin: 0; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 20px; padding: 24px 24px 22px; display: grid; gap: 16px; align-content: space-between;
+  box-shadow: var(--shadow); position: relative; overflow: hidden;
+}
+.quote::before {
+  content: "\201C"; position: absolute; top: -18px; right: 14px;
+  font-family: var(--font-display); font-size: 120px; line-height: 1; color: var(--warm-soft);
+}
+.quote blockquote { margin: 0; font-family: var(--font-display); font-size: 17.5px; line-height: 1.5; position: relative; font-variation-settings: "SOFT" 100; }
+.quote figcaption { font-size: 13px; color: var(--muted); position: relative; padding-top: 14px; border-top: 1px solid var(--line); }
+.quote figcaption b { color: var(--ink); font-weight: 600; display: block; font-size: 14px; }
+.quotes-note { color: var(--muted); font-size: 14px; margin: 0; }
 
+footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); text-align: center; padding-top: 8px; }
+
+@media (max-width: 1180px) {
+  .intro { grid-template-columns: 1fr; }
+  .cloud { max-width: 460px; }
+  .cloud canvas { height: 200px; }
+}
 @media (max-width: 900px) {
-  .wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 32px; }
+  .wrap { grid-template-columns: 1fr; gap: 48px; padding-top: 24px; }
   .rail { position: static; }
   nav { display: none; }
   .intro { grid-template-columns: 1fr; }
-  .projects { grid-template-columns: 1fr; }
+  .projects, .quotes { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
+  .wrap { padding: 16px 16px 64px; }
+  .rail { padding: 24px 20px; border-radius: 20px; }
+  .avatar { width: 136px; height: 136px; }
   .job { grid-template-columns: 1fr; gap: 4px; }
-  .name { font-size: 38px; }
-  .lede { font-size: 19px; }
+  .name { font-size: 40px; }
+  .lede { font-size: 27px; }
+  .label { font-size: 25px; }
 }
 </style>
 </head>
@@ -182,32 +268,42 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
 
   <aside class="rail">
     <div>
+      <!-- Your photo: save it as photo.jpg next to this file (square crop, at least 400x400 px). Until then, initials show. -->
+      <div class="avatar"><div class="avatar-in">
+        <span class="initials" aria-hidden="true">NI</span>
+        <img src="photo.jpg" alt="Portrait of Nour Issa" width="168" height="168" onerror="this.remove()">
+      </div></div>
       <h1 class="name">Nour Issa</h1>
-      <div class="role">AI &amp; computer vision engineer<br>M2 Mechatronics, Machine Vision &amp; AI · Université Paris-Saclay</div>
+      <div class="role">AI, computer vision &amp; robotics engineer<br>M2 Mechatronics, Machine Vision &amp; AI · Université Paris-Saclay</div>
     </div>
-    <div class="status">Open to a 2027 end-of-studies internship</div>
+    <div class="status">Open to a 6-month internship · from Feb/Mar 2027</div>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#experience">Experience <span>01</span></a></li>
         <li><a href="#projects">Projects <span>02</span></a></li>
         <li><a href="#education">Education <span>03</span></a></li>
         <li><a href="#skills">Skills <span>04</span></a></li>
+        <li><a href="#recommendations">Recommendations <span>05</span></a></li>
       </ul>
     </nav>
     <div class="contact">
       <div class="row"><span class="k">based</span><span>Paris area, France</span></div>
-      <div class="row"><span class="k">email</span><span class="todo">add email</span></div>
-      <div class="row"><span class="k">linkedin</span><span class="todo">add link</span></div>
-      <div class="row"><span class="k">github</span><span class="todo">add link</span></div>
+      <div class="row"><span class="k">email</span><a href="mailto:nourissa710@gmail.com">nourissa710@gmail.com</a></div>
+      <div class="row"><span class="k">github</span><a href="https://github.com/nour-issa">github.com/nour-issa</a></div>
+      <!-- LinkedIn: paste your profile URL below, then delete the comment markers around the row.
+      <div class="row"><span class="k">linkedin</span><a href="PASTE-LINKEDIN-URL-HERE">Nour Issa</a></div>
+      -->
     </div>
+    <a class="cv-btn" href="Nour_Issa_CV_2027.pdf">Download CV (PDF)</a>
   </aside>
 
   <main>
     <section aria-label="About">
       <div class="intro">
         <div>
-          <p class="lede">I build vision systems that understand <strong>3D scenes and human actions</strong>, and I want to put them on robots.</p>
-          <p class="sub">I spent a year and a half shipping computer vision for the sensor market: stereo 3D reconstruction and multi-sensor tracking. Before that I wrote C++ for automotive software. Now I'm doing an M2 in mechatronics, machine vision and AI, working on fine-grained action segmentation in egocentric video. I'm looking for an end-of-studies internship in embodied AI, vision-language-action models or video understanding.</p>
+          <p class="kicker">Computer vision · Robotics · Physical AI</p>
+          <p class="lede">I build vision systems that understand <strong>3D scenes and human actions</strong>, and I want to put them on robots that act in the physical world.</p>
+          <p class="sub">I spent a year and a half shipping computer vision for the sensor market: stereo 3D reconstruction and multi-sensor tracking, in a product shown at EuroShop 2026. Before that I wrote C++ for automotive software on a Volkswagen Group project. Now I'm doing an M2 in mechatronics, machine vision and AI, working on fine-grained action segmentation in egocentric video. I'm looking for a 6-month end-of-studies internship in <strong>physical AI and robot learning</strong>: vision-language-action (VLA) models, embodied perception, 3D vision, video understanding or applied machine learning.</p>
         </div>
         <figure class="cloud" aria-hidden="true">
           <canvas id="cloud"></canvas>
@@ -217,60 +313,91 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
     </section>
 
     <section id="experience">
-      <h2 class="label">01 · Experience</h2>
+      <h2 class="label"><span class="n">01</span>Experience</h2>
       <div class="timeline">
         <article class="job">
           <div class="when">Jan 2025 –<br>Aug 2026</div>
           <div>
             <h3>AI Developer, sensor market</h3>
             <div class="org">INTENTA, via LIT</div>
-            <p>Computer vision for sensor products: stereo 3D reconstruction and tracking objects across multiple sensors.</p>
-            <ul class="tags"><li>stereo vision</li><li>3D reconstruction</li><li>multi-sensor tracking</li></ul>
+            <p>Real-time computer vision for retail customer-journey sensors.</p>
+            <ul class="points">
+              <li>Built person detection and classification pipelines that combine deep-learning models with classical computer vision.</li>
+              <li>Implemented 3D world-position reconstruction from stereo cameras for spatial tracking.</li>
+              <li>Contributed to a multi-sensor tracker that fuses vision with Bluetooth signals to follow groups and tell staff from customers.</li>
+              <li>Developed zone-based analytics for dwell time and in-store behaviour.</li>
+              <li>The technology was shown publicly by Crosscan GmbH at EuroCIS / EuroShop 2026 in Düsseldorf.</li>
+            </ul>
+            <ul class="tags"><li>stereo vision</li><li>3D reconstruction</li><li>multi-sensor tracking</li><li>real-time detection</li></ul>
           </div>
         </article>
         <article class="job">
-          <div class="when">Earlier</div>
+          <div class="when">Feb 2024 –<br>Dec 2024</div>
           <div>
             <h3>C++ Developer, automotive</h3>
-            <div class="org">Roadgraph · CARIAD project</div>
-            <p>C++ development for automotive software.</p>
-            <ul class="tags"><li>C++</li><li>automotive</li></ul>
+            <div class="org">INTENTA, via LIT · Roadgraph project with CARIAD (Volkswagen Group)</div>
+            <ul class="points">
+              <li>Contributed to C++ software for road-graph mapping and localization with HD and SD maps.</li>
+              <li>Worked in the validation team investigating and tracking software issues in the TSL and MPP modules.</li>
+            </ul>
+            <ul class="tags"><li>C++</li><li>HD maps</li><li>localization</li><li>validation</li></ul>
           </div>
         </article>
         <article class="job">
-          <div class="when">Earlier</div>
+          <div class="when">Dec 2023 –<br>Jan 2024</div>
           <div>
             <h3>Backend Developer Intern</h3>
             <div class="org">Orasys</div>
-            <p>Backend development internship.</p>
-            <ul class="tags"><li>backend</li></ul>
+            <p>Built a Laravel web platform, within a team, that lets professionals connect through smart business cards.</p>
+            <ul class="tags"><li>backend</li><li>Laravel</li></ul>
           </div>
         </article>
       </div>
     </section>
 
     <section id="projects">
-      <h2 class="label">02 · Projects</h2>
+      <h2 class="label"><span class="n">02</span>Projects</h2>
       <div class="projects">
         <article class="project">
           <div class="top"><h3>Fine-grained action segmentation in egocentric video</h3><span class="pill">in progress</span></div>
           <p class="ctx">M2 research project · Université Paris-Saclay</p>
-          <p>Segmenting the key steps of a task from first-person video, using the Ego-Exo4D keystep benchmark and ideas from hand–object interaction work such as PrimHOI.</p>
+          <p>Segmenting the key steps of a task from first-person video on the Ego-Exo4D keystep benchmark, and defining a taxonomy of action primitives with ways to discover them, building on hand–object interaction work such as PrimHOI.</p>
+          <!-- When the repo is public, add: <p class="links"><a href="https://github.com/nour-issa/REPO-NAME">Code</a></p> and a result figure or short video. -->
           <div class="pipe"><b>ego video</b><i>→</i><b>frame features</b><i>→</i><b>temporal model</b><i>→</i><b>keystep labels</b></div>
           <ul class="tags"><li>Ego-Exo4D</li><li>video understanding</li></ul>
         </article>
         <article class="project">
           <div class="top"><h3>Hexapod robot with adaptive gaits</h3><span class="pill">in progress</span></div>
           <p class="ctx">M2 mechatronics project · Université Paris-Saclay</p>
-          <p>A six-legged robot that adapts its gait to the terrain.</p>
+          <p>A six-legged robot that adapts its gait to the terrain: leg kinematics (forward and inverse), gait generation and AI-based terrain adaptation, simulated with ROS 2 and Gazebo.</p>
+          <!-- Add a 10-20 second Gazebo clip or GIF here: it is the strongest thing you can show a robotics team. -->
           <div class="pipe"><b>terrain</b><i>→</i><b>gait selection</b><i>→</i><b>leg kinematics</b><i>→</i><b>motion</b></div>
-          <ul class="tags"><li>legged robotics</li><li>gait control</li><li>kinematics</li></ul>
+          <ul class="tags"><li>legged robotics</li><li>gait control</li><li>kinematics</li><li>ROS 2</li><li>Gazebo</li></ul>
+        </article>
+        <article class="project">
+          <div class="top"><h3>Vision in the latent space of a learned codec</h3><span class="pill">prototype</span></div>
+          <p class="ctx">Research prototype · PyTorch</p>
+          <p>Image classification run directly on the latents of a learned image codec (hyperprior, JPEG&nbsp;AI-like), skipping pixel decoding. A light latent network is <strong>24× cheaper</strong> than decode-then-ResNet-18, and an input ablation shows the hyperprior and σ map carry most of the semantic signal.</p>
+          <div class="pipe"><b>bitstream</b><i>→</i><b>ŷ, μ, σ, ẑ</b><i>→</i><b>latent CNN</b><i>→</i><b>class</b></div>
+          <ul class="tags"><li>learned compression</li><li>efficient inference</li><li>ablation study</li></ul>
+        </article>
+        <article class="project">
+          <div class="top"><h3>Object detection in aerial images</h3></div>
+          <p class="ctx">Research internship · HIAST</p>
+          <p>A deep-learning object detection system for aerial imagery.</p>
+          <ul class="tags"><li>object detection</li><li>deep learning</li><li>aerial imagery</li></ul>
+        </article>
+        <article class="project">
+          <div class="top"><h3>Object detection for a visual question answering corpus</h3></div>
+          <p class="ctx">Research internship · HIAST</p>
+          <p>A detection system that supports building a research corpus for visual question answering.</p>
+          <ul class="tags"><li>object detection</li><li>VQA</li><li>dataset building</li></ul>
         </article>
       </div>
     </section>
 
     <section id="education">
-      <h2 class="label">03 · Education</h2>
+      <h2 class="label"><span class="n">03</span>Education</h2>
       <div class="timeline edu">
         <article class="job">
           <div class="when">2026 – 2027</div>
@@ -283,29 +410,61 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
         <article class="job">
           <div class="when">– 2023</div>
           <div>
-            <h3>Bachelor's in Software and AI Engineering</h3>
-            <div class="org">HIAST</div>
+            <h3>Engineering degree, Software and AI Engineering</h3>
+            <div class="org">Higher Institute for Applied Sciences and Technology (HIAST), Damascus, Syria</div>
+            <p>The only <em>grande école</em> in Syria, admitting only the top-ranked students in the national baccalaureate. Highest mark of the cohort for the 4th-year AI project.</p>
+          </div>
+        </article>
+        <article class="job">
+          <div class="when">– 2018</div>
+          <div>
+            <h3>High school diploma, scientific track</h3>
+            <div class="org">National Center for the Distinguished (NCD), Syria</div>
+            <p>Syria's national high school for gifted students: admission by nationwide selection of the country's top-performing pupils.</p>
           </div>
         </article>
       </div>
     </section>
 
     <section id="skills">
-      <h2 class="label">04 · Skills</h2>
+      <h2 class="label"><span class="n">04</span>Skills</h2>
       <div class="skills">
         <div>
           <h3>Vision &amp; AI</h3>
-          <ul><li>Computer vision</li><li>Stereo 3D reconstruction</li><li>Multi-sensor tracking</li><li>Reinforcement learning</li><li>Video understanding</li></ul>
+          <ul><li>PyTorch, OpenCV, scikit-learn</li><li>Object detection and segmentation</li><li>Stereo 3D reconstruction</li><li>Multi-sensor tracking</li><li>Video understanding</li><li>Reinforcement learning</li><li>Transformers / ViT</li><li>Quantization and edge deployment (RKNN)</li></ul>
         </div>
         <div>
           <h3>Robotics &amp; code</h3>
-          <ul><li>C++</li><li>Python</li><li>ROS 2</li><li>Gazebo</li></ul>
+          <ul><li>Python, C++</li><li>ROS 2, Gazebo</li><li>Forward and inverse kinematics</li><li>Sensor fusion (Kalman, EKF)</li><li>Git, Linux, Docker</li></ul>
         </div>
         <div>
           <h3>Languages</h3>
-          <ul class="lang"><li>Arabic <span>native</span></li><li>English <span>fluent</span></li><li>French <span>intermediate</span></li></ul>
+          <ul class="lang"><li>Arabic <span>native</span></li><li>English <span>fluent · IELTS 7.5</span></li><li>French <span>intermediate</span></li></ul>
         </div>
       </div>
+    </section>
+
+    <section id="recommendations">
+      <h2 class="label"><span class="n">05</span>Recommendations</h2>
+      <div class="quotes">
+        <figure class="quote">
+          <blockquote>Nour was vital in the development of a correspondence analysis algorithm and an AI component for our next-gen sensor product. She developed a stereo algorithm that runs on embedded hardware.</blockquote>
+          <figcaption><b>Marvin Espig</b>Product Owner, Sensor Algorithm Development · Intenta SEH GmbH (direct supervisor)</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>Her performance has consistently been at the top level, making her one of the most promising students I have mentored.</blockquote>
+          <figcaption><b>Prof. Omar Hamdoun</b>Full Professor, Department of Informatics · HIAST (graduation project supervisor)</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>She earned the highest mark among her peers for her 4th project, which is a testament to her intelligence, hard work, and attention to detail.</blockquote>
+          <figcaption><b>Dr. Mustapha Dakkak</b>Head of the Informatics Department · HIAST</figcaption>
+        </figure>
+        <figure class="quote">
+          <blockquote>Nour Issa is an outstanding data scientist who ranks in the top 10% of our peer group.</blockquote>
+          <figcaption><b>Dr. Johann Harnoss</b>Founder &amp; CEO · Imagine Foundation e.V., Berlin</figcaption>
+        </figure>
+      </div>
+      <p class="quotes-note">Full signed letters, including from Prof. Assef Jafar and Dr. Waseem Safi (HIAST), are available on request: <a href="mailto:nourissa710@gmail.com?subject=Recommendation%20letters">email me</a>.</p>
     </section>
 
     <footer>Nour Issa · 2026</footer>
@@ -348,7 +507,7 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
     ctx.clearRect(0, 0, w, h);
     var a = reduce ? 0.6 : t * 0.00025, tilt = 0.45;
     var ca = Math.cos(a), sa = Math.sin(a), ct = Math.cos(tilt), st = Math.sin(tilt);
-    var accent = color('--accent'), muted = color('--muted');
+    var accent = color('--accent'), sky = color('--sky'), warm = color('--warm');
     for (var i = 0; i < pts.length; i++) {
       var x = pts[i][0], y = pts[i][1], z = pts[i][2];
       var x1 = x * ca - z * sa, z1 = x * sa + z * ca;
@@ -357,7 +516,7 @@ footer { color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
       var px = w / 2 + x1 * s, py = h / 2 + y2 * s;
       var near = Math.max(0, Math.min(1, (3.9 - d) / 1.4));
       ctx.globalAlpha = 0.25 + 0.75 * near;
-      ctx.fillStyle = i < 520 ? muted : accent;
+      ctx.fillStyle = i < 520 ? sky : i < 780 ? accent : warm;
       ctx.fillRect(px, py, 1.6 + near, 1.6 + near);
     }
     ctx.globalAlpha = 1;
