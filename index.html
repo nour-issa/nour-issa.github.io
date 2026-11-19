@@ -129,6 +129,14 @@ nav a:hover { color: var(--ink); background: var(--bg-2); }
 .contact .row > :last-child { overflow-wrap: anywhere; }
 .contact .k { color: var(--muted); font-family: var(--font-mono); font-size: 11px; padding-top: 3px; text-transform: uppercase; letter-spacing: .06em; }
 
+.li-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px; text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  background: var(--ink); color: var(--surface); padding: 11px 18px; border-radius: 999px;
+  transition: background .2s, transform .2s;
+}
+.li-btn:hover { background: var(--accent); transform: translateY(-1px); }
+
 /* Main */
 main { display: grid; gap: 72px; min-width: 0; }
 section { display: grid; gap: 22px; scroll-margin-top: 24px; }
@@ -186,7 +194,7 @@ section { display: grid; gap: 22px; scroll-margin-top: 24px; }
   transition: transform .25s ease, border-color .25s ease;
 }
 .project:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
-@media (prefers-reduced-motion: reduce) { .project { transition: none; } .project:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .project, .li-btn { transition: none; } .project:hover, .li-btn:hover { transform: none; } }
 .project .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .project h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1.22; letter-spacing: -0.01em; }
 .pill {
@@ -258,6 +266,8 @@ section { display: grid; gap: 22px; scroll-margin-top: 24px; }
 .steps li:nth-child(3) .dot { background: var(--ink); color: var(--surface); }
 .steps b { display: block; font-weight: 600; }
 .steps span.d { color: var(--muted); font-size: 14.5px; }
+/* Only pin the identity card when the whole card fits on screen. */
+@media (max-height: 960px) { .rail { position: static; } }
 @media (max-width: 1180px) { .focus { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .focus { padding: 18px; border-radius: 20px; } .focus h3 { font-size: 24px; } }
 
@@ -300,6 +310,10 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
       <div class="role">AI, computer vision &amp; robotics engineer<br>M2 Mechatronics, Machine Vision &amp; AI · Université Paris-Saclay</div>
     </div>
     <div class="status">Open to a 6-month internship · from Feb/Mar 2027</div>
+    <a class="li-btn" href="https://www.linkedin.com/in/nour-issa-155a30294/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.5-2.25 3.1V21H9z"/></svg>
+      See my CV on LinkedIn
+    </a>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#experience">Experience <span>01</span></a></li>
@@ -313,9 +327,7 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
       <div class="row"><span class="k">based</span><span>Paris area, France</span></div>
       <div class="row"><span class="k">email</span><a href="mailto:nourissa710@gmail.com">nourissa710@gmail.com</a></div>
       <div class="row"><span class="k">github</span><a href="https://github.com/nour-issa">github.com/nour-issa</a></div>
-      <!-- LinkedIn: paste your profile URL below, then delete the comment markers around the row.
-      <div class="row"><span class="k">linkedin</span><a href="PASTE-LINKEDIN-URL-HERE">Nour Issa</a></div>
-      -->
+      <div class="row"><span class="k">linkedin</span><a href="https://www.linkedin.com/in/nour-issa-155a30294/" target="_blank" rel="noopener">in/nour-issa</a></div>
     </div>
   </aside>
 
