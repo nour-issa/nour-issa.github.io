@@ -128,14 +128,6 @@ nav a:hover { color: var(--ink); background: var(--bg-2); }
 .contact .row { display: grid; grid-template-columns: 64px 1fr; gap: 8px; min-width: 0; }
 .contact .row > :last-child { overflow-wrap: anywhere; }
 .contact .k { color: var(--muted); font-family: var(--font-mono); font-size: 11px; padding-top: 3px; text-transform: uppercase; letter-spacing: .06em; }
-.cv-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;
-  font-size: 14px; font-weight: 500;
-  background: var(--ink); color: var(--surface); padding: 11px 18px; border-radius: 999px;
-  transition: background .2s, transform .2s;
-}
-.cv-btn::after { content: "↓"; }
-.cv-btn:hover { background: var(--accent); transform: translateY(-1px); }
 
 /* Main */
 main { display: grid; gap: 72px; min-width: 0; }
@@ -194,7 +186,7 @@ section { display: grid; gap: 22px; scroll-margin-top: 24px; }
   transition: transform .25s ease, border-color .25s ease;
 }
 .project:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
-@media (prefers-reduced-motion: reduce) { .project, .cv-btn { transition: none; } .project:hover, .cv-btn:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .project { transition: none; } .project:hover { transform: none; } }
 .project .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .project h3 { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1.22; letter-spacing: -0.01em; }
 .pill {
@@ -325,7 +317,6 @@ footer { color: var(--muted); font-size: 12px; font-family: var(--font-mono); te
       <div class="row"><span class="k">linkedin</span><a href="PASTE-LINKEDIN-URL-HERE">Nour Issa</a></div>
       -->
     </div>
-    <a class="cv-btn" href="Nour_Issa_CV_2027.pdf">Download CV (PDF)</a>
   </aside>
 
   <main>
